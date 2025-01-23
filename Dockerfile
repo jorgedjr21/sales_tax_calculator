@@ -1,7 +1,7 @@
 FROM ruby:3.3-alpine
 
 # Install required packages for building native extensions
-RUN apk add --no-cache build-base git
+RUN apk add --no-cache build-base git bash
 
 # Set the working directory
 WORKDIR /app
