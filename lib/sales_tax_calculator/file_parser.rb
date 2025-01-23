@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module SalesTaxCalculator
+  # Parses the input file and return an array of items
   class FileParser
     attr_reader :file_path
 
