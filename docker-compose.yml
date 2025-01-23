@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  gem:
+    build: .
+    volumes:
+      - .:/app
+    command: ["bundle", "exec", "rspec"]
