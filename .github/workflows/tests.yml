@@ -8,7 +8,7 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    output:
+    outputs:
       cache-key: ${{ steps.cache-deps.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
           bundle install
   rspec:
     runs-on: ubuntu-latest
-
+    needs: setup
     steps:
       - uses: actions/checkout@v2
 
