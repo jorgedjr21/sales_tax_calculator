@@ -30,7 +30,8 @@ jobs:
       - name: Install Dependencies
         run: |
           gem install bundler
-          bundle install --path vendor/bundle
+          bundle config set path 'vendor/bundle'
+          bundle install
   rspec:
     runs-on: ubuntu-latest
     needs: setup
