@@ -26,7 +26,6 @@ jobs:
 
   rubocop:
     runs-on: ubuntu-latest
-    needs: setup
     steps:
       - uses: actions/checkout@v2
 
