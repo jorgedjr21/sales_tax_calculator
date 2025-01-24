@@ -36,7 +36,8 @@ jobs:
           bundle install
 
       - name: Debug Cache Key
-        run: echo "Cache Key: ${{ steps.cache-deps.outputs.cache-key }}"
+        run: |
+          echo "Cache Key: ${{ steps.cache-deps.outputs.cache-key }}"
 
   rspec:
     runs-on: ubuntu-latest
