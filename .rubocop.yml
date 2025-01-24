@@ -6,3 +6,8 @@ Style/StringLiterals:
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+# Disable Metrics/BlockLength for spec files
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
