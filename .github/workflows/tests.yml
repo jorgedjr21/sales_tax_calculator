@@ -26,12 +26,17 @@ jobs:
           key: ${{ runner.os }}-bundle-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-bundle-
+        outputs:
+          cache-key: ${{ steps.cache-deps.outputs.cache-key }}
 
       - name: Install Dependencies
         run: |
           gem install bundler
           bundle config set path 'vendor/bundle'
           bundle install
+
+      - name: Debug Cache Key
+        run: echo "Cache Key: ${{ steps.cache-deps.outputs.cache-key }}"
 
   rspec:
     runs-on: ubuntu-latest
