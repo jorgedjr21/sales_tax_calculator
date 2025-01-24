@@ -6,10 +6,8 @@ on:
       - main
 
 jobs:
-  setup:
+  rspec:
     runs-on: ubuntu-latest
-    outputs:
-      cache-key: ${{ steps.cache-deps.outputs.cache-key }}
     steps:
       - uses: actions/checkout@v2
 
@@ -17,49 +15,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
-
-      - name: Cache Dependencies
-        id: cache-deps
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bundle-
-        outputs:
-          cache-key: ${{ steps.cache-deps.outputs.cache-key }}
 
       - name: Install Dependencies
         run: |
           gem install bundler
-          bundle config set path 'vendor/bundle'
           bundle install
-
-      - name: Debug Cache Key
-        run: |
-          echo "Cache Key: ${{ steps.cache-deps.outputs.cache-key }}"
-
-  rspec:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set Up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.3
-
-      - name: Restore Cache
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-bundle-
-
-      - name: Set up bundle path
-        run: bundle config set path 'vendor/bundle'
 
       - name: Run Tests
         run: bundle exec rspec
@@ -75,16 +35,10 @@ jobs:
         with:
           ruby-version: 3.3
 
-      - name: Restore Cache
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-bundle-
-
-      - name: Set up bundle path
-        run: bundle config set path 'vendor/bundle'
+      - name: Install Dependencies
+        run: |
+          gem install bundler
+          bundle install
 
       - name: Run RuboCop
         run: bundle exec rubocop
