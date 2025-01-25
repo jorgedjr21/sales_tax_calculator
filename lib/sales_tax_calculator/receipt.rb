@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module SalesTaxCalculator
+  # The Receipt class represents a receipt for a list of items.
+  # It calculates the total sales taxes and total price for the items,
+  # and provides a method to print the receipt.
   class Receipt
     attr_reader :items, :sales_taxes, :total
 

@@ -13,6 +13,8 @@ module SalesTaxCalculator
 
   def self.run(file_path)
     parser = FileParser.new(file_path: file_path)
-    puts parser.parse_file
+    items = parser.parse_file
+    receipt = Receipt.new(items: items)
+    receipt.print
   end
 end
