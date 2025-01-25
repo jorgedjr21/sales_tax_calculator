@@ -3,8 +3,9 @@
 module SalesTaxCalculator
   # The Item class represents a product with its attributes.
   # It determines if the item is imported and/or exempted from basic sales tax.
+  # It also calculates the tax and total price for the item.
   class Item
-    attr_reader :name, :price, :quantity, :imported, :exempted
+    attr_reader :name, :price, :quantity, :imported, :exempted, :tax, :total_price
 
     EXEMPT_ITEMS = %w[book chocolate pill].freeze
 
@@ -14,6 +15,15 @@ module SalesTaxCalculator
       @price = price
       @imported = name.include?("imported")
       @exempted = EXEMPT_ITEMS.any? { |item| name.include?(item) }
+
+      calculate_tax_and_total_price
+    end
+
+    private
+
+    def calculate_tax_and_total_price
+      @tax = TaxCalculator.calculate(self)
+      @total_price = price + tax
     end
   end
 end

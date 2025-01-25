@@ -4,6 +4,7 @@ require_relative "sales_tax_calculator/version"
 require_relative "sales_tax_calculator/item"
 require_relative "sales_tax_calculator/tax_calculator"
 require_relative "sales_tax_calculator/file_parser"
+require_relative "sales_tax_calculator/receipt"
 
 # SalesTaxCalculator module provides functionality to parse an input file
 # and calculate sales tax
@@ -12,6 +13,8 @@ module SalesTaxCalculator
 
   def self.run(file_path)
     parser = FileParser.new(file_path: file_path)
-    puts parser.parse_file
+    items = parser.parse_file
+    receipt = Receipt.new(items: items)
+    receipt.print
   end
 end
