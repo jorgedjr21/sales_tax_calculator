@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sales_tax_calculator (0.1.0)
+    sales_tax_calculator (0.2.0)
 
 GEM
   remote: https://rubygems.org/
