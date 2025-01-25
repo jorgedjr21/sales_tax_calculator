@@ -11,10 +11,10 @@ RSpec.describe SalesTaxCalculator::FileParser do
 
       it "parses the file and returns an array of items" do
         items = parser.parse_file
-        expect(items).to eq([
-                              { quantity: 1, item_name: "book", price: 12.49 },
-                              { quantity: 2, item_name: "music CD", price: 14.99 }
-                            ])
+        expect(items).to contain_exactly(
+          have_attributes(quantity: 1, name: "book", price: 12.49),
+          have_attributes(quantity: 2, name: "music CD", price: 14.99)
+        )
       end
     end
 
@@ -41,10 +41,10 @@ RSpec.describe SalesTaxCalculator::FileParser do
 
       it "parses only the valid lines and returns an array of items" do
         items = parser.parse_file
-        expect(items).to eq([
-                              { quantity: 1, item_name: "book", price: 12.49 },
-                              { quantity: 2, item_name: "music CD", price: 14.99 }
-                            ])
+        expect(items).to contain_exactly(
+          have_attributes(quantity: 1, name: "book", price: 12.49),
+          have_attributes(quantity: 2, name: "music CD", price: 14.99)
+        )
       end
     end
 
@@ -53,12 +53,12 @@ RSpec.describe SalesTaxCalculator::FileParser do
 
       it "parses the file and returns an array of items" do
         items = parser.parse_file
-        expect(items).to eq([
-                              { quantity: 3, item_name: "chocolate bar", price: 0.85 },
-                              { quantity: 1, item_name: "packet of headache pills", price: 9.75 },
-                              { quantity: 1, item_name: "book", price: 12.49 },
-                              { quantity: 2, item_name: "music CD", price: 14.99 }
-                            ])
+        expect(items).to contain_exactly(
+          have_attributes(quantity: 3, name: "chocolate bar", price: 0.85),
+          have_attributes(quantity: 1, name: "packet of headache pills", price: 9.75),
+          have_attributes(quantity: 1, name: "book", price: 12.49),
+          have_attributes(quantity: 2, name: "music CD", price: 14.99)
+        )
       end
     end
   end

@@ -20,7 +20,7 @@ module SalesTaxCalculator
         item_name = match_data[2]
         price = match_data[3].to_f
 
-        items << { quantity: quantity, item_name: item_name, price: price }
+        items << Item.new(quantity: quantity, name: item_name, price: price)
       end
       items
     end
