@@ -1,31 +1,42 @@
 # SalesTaxCalculator
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sales_tax_calculator`. To experiment with that code, run `bin/console` for an interactive prompt.
+The SalesTaxCalculator gem provides functionality to parse an input file, calculate sales tax for items based on specific rules, and print a receipt with the total sales taxes and total price.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Clone this repo to you machine. To keep the simplicity, this gem is not released.
 
 ## Usage
+To use the SalesTaxCalculator gem, you need to provide an input file with the list of items. Each line in the input file should be in the following format:
 
-TODO: Write usage instructions here
+```
+<quantity> <item name> at <price>
+```
 
-## Development
+Example:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+2 book at 12.49
+1 music CD at 14.99
+1 chocolate bar at 0.85
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Using Docker and Makefile
+You can also use Docker and Makefile to run the specs and the SalesTaxCalculator.
 
-## Contributing
+**Setup the environment**
+```
+make build
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sales_tax_calculator.
+**Run the specs**
+```
+make test
+```
+
+**Run the SalesTaxCalculator**
+```
+make run
+```
+
+Make sure to replace './example_input.txt' with the actual path to your input file in the Makefile. This one is just an example.
