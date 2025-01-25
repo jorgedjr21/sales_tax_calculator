@@ -5,6 +5,7 @@ The SalesTaxCalculator gem provides functionality to parse an input file, calcul
 ## Installation
 
 **This gem requires ruby 3.3 to run**
+
 Clone this repo to you machine. To keep the simplicity, this gem is not released.
 
 ## Usage
