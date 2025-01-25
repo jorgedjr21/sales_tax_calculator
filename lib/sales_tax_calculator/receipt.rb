@@ -13,22 +13,24 @@ module SalesTaxCalculator
 
     def calculate_totals
       items.each do |item|
-        tax = TaxCalculator.calculate(item)
-        total_price = item.price + tax
-        @sales_taxes += tax * item.quantity
-        @total += total_price * item.quantity
+        @sales_taxes += item.tax * item.quantity
+        @total += item.total_price * item.quantity
       end
     end
 
     def print
       items.each do |item|
-        tax = TaxCalculator.calculate(item)
-        total_price = item.price + tax
-        puts "#{item.quantity} #{item.name}: #{format("%.2f", (total_price * item.quantity))}"
+        puts format_item_output(item)
       end
 
-      puts "Sales Taxes: #{"%.2f" % sales_taxes}"
-      puts "Total: #{"%.2f" % total}"
+      puts format("Sales Taxes: %.2f", sales_taxes)
+      puts format("Total: %.2f", total)
+    end
+
+    private
+
+    def format_item_output(item)
+      "#{item.quantity} #{item.name}: #{format("%.2f", item.total_price * item.quantity)}"
     end
   end
 end
