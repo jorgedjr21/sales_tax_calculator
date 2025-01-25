@@ -1,6 +1,8 @@
-# frozem_string_literal: true
+# frozen_string_literal: true
 
 module SalesTaxCalculator
+  # The Item class represents a product with its attributes.
+  # It determines if the item is imported and/or exempted from basic sales tax.
   class Item
     attr_reader :name, :price, :quantity, :imported, :exempted
 

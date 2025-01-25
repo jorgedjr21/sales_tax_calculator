@@ -2,6 +2,7 @@
 
 require_relative "sales_tax_calculator/version"
 require_relative "sales_tax_calculator/item"
+require_relative "sales_tax_calculator/tax_calculator"
 require_relative "sales_tax_calculator/file_parser"
 
 # SalesTaxCalculator module provides functionality to parse an input file
